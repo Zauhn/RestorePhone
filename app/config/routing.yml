@@ -1,0 +1,14 @@
+tdtravel_advisor:
+    resource: "@tdtravelAdvisorBundle/Controller/"
+    type:     annotation
+    prefix:   /
+
+app:
+    resource: "@AppBundle/Controller/"
+    type:     annotation
+
+voyage:
+    path: /voyage
+
+redirection:
+    path: /voyage/visiteur
