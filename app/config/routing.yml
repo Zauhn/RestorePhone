@@ -12,8 +12,8 @@ app:
     resource: "@AppBundle/Controller/"
     type:     annotation
 
-voyage:
-    path: /voyage
+ajouter:
+    path: /ajouter
 
-redirection:
-    path: /voyage/visiteur
+voir:
+    path: /voir
