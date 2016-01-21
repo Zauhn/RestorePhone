@@ -1,3 +1,8 @@
+stage_restore_phone:
+    resource: "@StageRestorePhoneBundle/Controller/"
+    type:     annotation
+    prefix:   /
+
 tdtravel_advisor:
     resource: "@tdtravelAdvisorBundle/Controller/"
     type:     annotation
