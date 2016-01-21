@@ -37,9 +37,9 @@ class Reparation
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="dare_rendu", type="date")
+     * @ORM\Column(name="date_rendu", type="date")
      */
-    private $dareRendu;
+    private $dateRendu;
 
     /**
      * @var string
@@ -90,26 +90,26 @@ class Reparation
     }
 
     /**
-     * Set dareRendu
+     * Set dateRendu
      *
-     * @param \DateTime $dareRendu
+     * @param \DateTime $dateRendu
      * @return Reparation
      */
-    public function setDareRendu($dareRendu)
+    public function setDateRendu($dateRendu)
     {
-        $this->dareRendu = $dareRendu;
+        $this->dateRendu = $dateRendu;
 
         return $this;
     }
 
     /**
-     * Get dareRendu
+     * Get dateRendu
      *
      * @return \DateTime 
      */
-    public function getDareRendu()
+    public function getDateRendu()
     {
-        return $this->dareRendu;
+        return $this->dateRendu;
     }
 
     /**
