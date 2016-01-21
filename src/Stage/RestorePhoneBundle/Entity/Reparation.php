@@ -20,6 +20,12 @@ class Reparation
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $id;
+    
+    /**
+     * @ORM\ManyToOne(targetEntity="Stage\RestorePhoneBundle\Entity\Telephone")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $monTelephone;
 
     /**
      * @var \DateTime
@@ -150,5 +156,28 @@ class Reparation
     public function getPrix()
     {
         return $this->prix;
+    }
+
+    /**
+     * Set monTelephone
+     *
+     * @param \Stage\RestorePhoneBundle\Entity\Telephone $monTelephone
+     * @return Reparation
+     */
+    public function setMonTelephone(\Stage\RestorePhoneBundle\Entity\Telephone $monTelephone)
+    {
+        $this->monTelephone = $monTelephone;
+
+        return $this;
+    }
+
+    /**
+     * Get monTelephone
+     *
+     * @return \Stage\RestorePhoneBundle\Entity\Telephone 
+     */
+    public function getMonTelephone()
+    {
+        return $this->monTelephone;
     }
 }

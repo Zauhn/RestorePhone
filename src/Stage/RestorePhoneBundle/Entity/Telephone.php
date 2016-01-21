@@ -22,6 +22,12 @@ class Telephone
     private $id;
 
     /**
+     * @ORM\ManyToOne(targetEntity="Stage\RestorePhoneBundle\Entity\Client")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $monClient;
+    
+    /**
      * @var string
      *
      * @ORM\Column(name="IMEI", type="string", length=255)
@@ -90,5 +96,28 @@ class Telephone
     public function getModele()
     {
         return $this->modele;
+    }
+
+    /**
+     * Set monClient
+     *
+     * @param \Stage\RestorePhoneBundle\Entity\Client $monClient
+     * @return Telephone
+     */
+    public function setMonClient(\Stage\RestorePhoneBundle\Entity\Client $monClient)
+    {
+        $this->monClient = $monClient;
+
+        return $this;
+    }
+
+    /**
+     * Get monClient
+     *
+     * @return \Stage\RestorePhoneBundle\Entity\Client 
+     */
+    public function getMonClient()
+    {
+        return $this->monClient;
     }
 }
