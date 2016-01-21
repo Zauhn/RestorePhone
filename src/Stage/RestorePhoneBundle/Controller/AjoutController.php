@@ -25,6 +25,11 @@ class AjoutController extends Controller
                 ->add('dateRendu',     'date')
                 ->add('probleme',       'text')
                 ->add('prix',       'integer')
+                ->add('telephone', 'collection', array(
+                    'type'      => new TelephoneType(),
+                    'allow_add'     => true,
+                    'allow_delete'      => false
+                ))
                 ->add('Ajouter',       'submit')
                 ;
         $form = $formBuilder->getForm();
