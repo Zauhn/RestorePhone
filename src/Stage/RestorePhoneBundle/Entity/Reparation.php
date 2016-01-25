@@ -25,7 +25,7 @@ class Reparation
      * @ORM\ManyToOne(targetEntity="Stage\RestorePhoneBundle\Entity\Telephone")
      * @ORM\JoinColumn(nullable=false)
      */
-    private $monTelephone;
+    private $telephone;
 
     /**
      * @var \DateTime
@@ -159,25 +159,25 @@ class Reparation
     }
 
     /**
-     * Set monTelephone
+     * Set telephone
      *
-     * @param \Stage\RestorePhoneBundle\Entity\Telephone $monTelephone
+     * @param \Stage\RestorePhoneBundle\Entity\Telephone $telephone
      * @return Reparation
      */
-    public function setMonTelephone(\Stage\RestorePhoneBundle\Entity\Telephone $monTelephone)
+    public function setTelephone(\Stage\RestorePhoneBundle\Entity\Telephone $Telephone)
     {
-        $this->monTelephone = $monTelephone;
+        $this->telephone = $Telephone;
 
         return $this;
     }
 
     /**
-     * Get monTelephone
+     * Get telephone
      *
      * @return \Stage\RestorePhoneBundle\Entity\Telephone 
      */
-    public function getMonTelephone()
+    public function getTelephone()
     {
-        return $this->monTelephone;
+        return $this->telephone;
     }
 }
