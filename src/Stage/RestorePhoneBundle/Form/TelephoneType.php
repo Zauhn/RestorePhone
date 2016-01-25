@@ -5,6 +5,10 @@ namespace Stage\RestorePhoneBundle\Form;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
+use Stage\RestorePhoneBundle\Entity\Client;
+use Stage\RestorePhoneBundle\Entity\Telephone;
+use Stage\RestorePhoneBundle\Entity\Reparation;
+use Stage\RestorePhoneBundle\Form\TelephoneType;
 
 class TelephoneType extends AbstractType
 {

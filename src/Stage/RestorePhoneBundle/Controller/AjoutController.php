@@ -8,6 +8,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Stage\RestorePhoneBundle\Entity\Client;
 use Stage\RestorePhoneBundle\Entity\Telephone;
 use Stage\RestorePhoneBundle\Entity\Reparation;
+use Stage\RestorePhoneBundle\Form\TelephoneType;
 
 class AjoutController extends Controller
 {

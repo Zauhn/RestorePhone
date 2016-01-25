@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Client
  *
- * @ORM\Table()
+ * @ORM\Table("client")
  * @ORM\Entity(repositoryClass="Stage\RestorePhoneBundle\Entity\ClientRepository")
  */
 class Client
