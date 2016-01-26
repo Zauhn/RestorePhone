@@ -22,15 +22,19 @@ class AjoutController extends Controller
     public function ajouterAction(Request $request)
     {
         $reparation = new Reparation();
+        // Génération du formulaire via le générateur de formulaire 'form.factory'
         $form = $this->get('form.factory')->create(new ReparationType(), $reparation);
         
+        //On vérifie que les valeurs entrées sont correctes
         if ($form->handleRequest($request)->isValid()) {
+            //On fait persister notre objet puis on l'enregistre dans la BDD
             $em = $this->getDoctrine()->getManager();
             $em->persist($reparation);
             $em->flush();
         
         $request->getSession()->getFlashBag()->add('notice', 'Reparatione bien enregistrée.');
 
+        // On redirige vers la page de visualisation
         return $this->redirect($this->generateUrl('voir', array('id' => $reparation->getId())));
         }
 
