@@ -22,7 +22,7 @@ class Telephone
     private $id;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Stage\RestorePhoneBundle\Entity\Client")
+     * @ORM\ManyToOne(targetEntity="Stage\RestorePhoneBundle\Entity\Client", cascade={"persist"})
      * @ORM\JoinColumn(nullable=false)
      */
     private $monClient;
@@ -101,10 +101,10 @@ class Telephone
     /**
      * Set monClient
      *
-     * @param \Stage\RestorePhoneBundle\Entity\Client $monClient
+     * @param \Stage\RestorePhoneBundle\Entity\MonClient $monClient
      * @return Telephone
      */
-    public function setMonClient(\Stage\RestorePhoneBundle\Entity\Client $monClient)
+    public function setMonClient(\Stage\RestorePhoneBundle\Entity\MonClient $monClient)
     {
         $this->monClient = $monClient;
 
@@ -114,7 +114,7 @@ class Telephone
     /**
      * Get monClient
      *
-     * @return \Stage\RestorePhoneBundle\Entity\Client 
+     * @return \Stage\RestorePhoneBundle\Entity\MonClient 
      */
     public function getMonClient()
     {

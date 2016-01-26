@@ -22,7 +22,7 @@ class Reparation
     private $id;
     
     /**
-     * @ORM\ManyToOne(targetEntity="Stage\RestorePhoneBundle\Entity\Telephone")
+     * @ORM\ManyToOne(targetEntity="Stage\RestorePhoneBundle\Entity\Telephone", cascade={"persist"})
      * @ORM\JoinColumn(nullable=false)
      */
     private $telephone;

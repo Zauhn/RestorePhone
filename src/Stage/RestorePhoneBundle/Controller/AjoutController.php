@@ -9,6 +9,8 @@ use Stage\RestorePhoneBundle\Entity\Client;
 use Stage\RestorePhoneBundle\Entity\Telephone;
 use Stage\RestorePhoneBundle\Entity\Reparation;
 use Stage\RestorePhoneBundle\Form\TelephoneType;
+use Stage\RestorePhoneBundle\Form\ReparationType;
+use Symfony\Component\HttpFoundation\Request;
 
 class AjoutController extends Controller
 {
@@ -17,25 +19,23 @@ class AjoutController extends Controller
      * @Route("/ajouter")
      * @Template()
      */
-    public function ajouterAction()
+    public function ajouterAction(Request $request)
     {
         $reparation = new Reparation();
-        $formBuilder = $this->get('form.factory')->createBuilder('form', $reparation);
-        $formBuilder
-                ->add('date',   'date')
-                ->add('dateRendu',     'date')
-                ->add('probleme',       'text')
-                ->add('prix',       'integer')
-                ->add('telephone', 'collection', array(
-                    'type'      => new TelephoneType(),
-                    'allow_add'     => true,
-                    'allow_delete'      => false
-                ))
-                ->add('Ajouter',       'submit')
-                ;
-        $form = $formBuilder->getForm();
-        return $this->render('StageRestorePhoneBundle:Ajout:form.html.twig', array('form'=>$form->createView(),
-            ));
+        $form = $this->get('form.factory')->create(new ReparationType(), $reparation);
         
+        if ($form->handleRequest($request)->isValid()) {
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($reparation);
+            $em->flush();
+        
+        $request->getSession()->getFlashBag()->add('notice', 'Reparatione bien enregistrée.');
+
+        return $this->redirect($this->generateUrl('restore_phone', array('id' => $reparation->getId())));
+        }
+
+        return $this->render('StageRestorePhoneBundle:Ajout:form.html.twig', array(
+      'form' => $form->createView(),
+    ));
     }
 }
