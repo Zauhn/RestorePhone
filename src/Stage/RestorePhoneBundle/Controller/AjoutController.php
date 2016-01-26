@@ -31,7 +31,7 @@ class AjoutController extends Controller
         
         $request->getSession()->getFlashBag()->add('notice', 'Reparatione bien enregistrée.');
 
-        return $this->redirect($this->generateUrl('restore_phone', array('id' => $reparation->getId())));
+        return $this->redirect($this->generateUrl('voir', array('id' => $reparation->getId())));
         }
 
         return $this->render('StageRestorePhoneBundle:Ajout:form.html.twig', array(

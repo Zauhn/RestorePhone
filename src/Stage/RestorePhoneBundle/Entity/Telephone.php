@@ -104,7 +104,7 @@ class Telephone
      * @param \Stage\RestorePhoneBundle\Entity\MonClient $monClient
      * @return Telephone
      */
-    public function setMonClient(\Stage\RestorePhoneBundle\Entity\MonClient $monClient)
+    public function setMonClient(\Stage\RestorePhoneBundle\Entity\Client $monClient)
     {
         $this->monClient = $monClient;
 
