@@ -1,0 +1,19 @@
+<div class="well">
+
+<h3>Liste des reparations</h3>
+
+<ul>
+
+{% for recherche in liste_recherche %}
+
+<li><a href="{{ path('StageRestorePhoneScriptreparation_voirReparation', {'id': recherche.id}) }}">{{ recherche.Client.nom }}</a></li>
+
+{% else %}
+
+<p>Désolé il n'y a, pour le moment, aucune reparation correspondant à votre recherche.</p>
+
+{% endfor %}
+
+</ul>
+
+</div>
