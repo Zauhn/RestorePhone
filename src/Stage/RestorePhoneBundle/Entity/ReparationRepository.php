@@ -12,4 +12,63 @@ use Doctrine\ORM\EntityRepository;
  */
 class ReparationRepository extends EntityRepository
 {
+    public function findReparationByParametres($data)
+
+    {
+
+        $query = $this->createQueryBuilder('r');
+        $query  ->where('r.Nom LIKE :nomClient')
+
+                ->andWhere('r.IMEI LIKE :IMEITelephone')
+
+                ->andWhere('r.Date LIKE :dateReparation')
+                
+                ->setParameters(array(
+                    'nomClient' => $data['Nom'],
+
+                    'IMEITelephone' => $data['IMEI'],
+
+                    'dateReparation' => $data['Date']));
+
+
+        // Si la recherche porte sur toutes les clients
+
+        if($data['Client'] != '')
+
+        {
+
+            $query->andWhere('r.Client = :Client')
+
+            ->setParameter('Client', $data['Client']);
+
+        }
+
+        // Si la recherche porte sur tout les telephones
+
+        if($data['Telephone'] != '')
+
+        {
+
+            $query->andWhere('r.Telephone = :Telephone')
+
+            ->setParameter('Telephone', $data['Telephone']);
+
+        }
+
+        // Si la recherche porte sur toutes les dates
+
+        if($data['Reparation'] != '')
+
+        {
+
+            $query->andWhere('r.Reparation = :Reparation')
+
+            ->setParameter('Reparation', $data['Reparation']);
+
+        }
+
+
+        return $query->getQuery()->getResult();
+
+    }
 }
