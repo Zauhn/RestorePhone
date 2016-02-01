@@ -11,14 +11,18 @@ use Stage\RestorePhoneBundle\Entity\Reparation;
 use Stage\RestorePhoneBundle\Form\TelephoneType;
 use Stage\RestorePhoneBundle\Form\ReparationType;
 use Symfony\Component\HttpFoundation\Request;
+use Stage\RestorePhoneBundle\Form\RechercheType;
+
+
 
 
 
 class RechercheController extends Controller
 {
-
-
-
+	/**
+     * @Route("/voir")
+     * @Template()
+     */
 
     public function indexAction()
 
@@ -26,7 +30,7 @@ class RechercheController extends Controller
 
         //On crée le FormBuilder grâce à la méthode du contrôleur. Toujours sans entité
 
-            $form = $this->createForm(new AdvertismentSearchType());
+            $form = $this->createForm(new RechercheType());
 
         //On récupère la requête
 
@@ -52,7 +56,7 @@ class RechercheController extends Controller
 
                             //On va récupérer la méthode dans le repository afin de trouver toutes les annonces filtrées par les paramètres du formulaire
 
-                        $liste_recherche = $em->getRepository('StageRestorePhoneBundle:Recherche')->findRechercheByParametres($data);
+                        $liste_recherche = $em->getRepository('StageRestorePhoneBundle:Reparation')->findByOne($data);
 
                               //Puis on redirige vers la page de visualisation de cette liste d'annonces
 

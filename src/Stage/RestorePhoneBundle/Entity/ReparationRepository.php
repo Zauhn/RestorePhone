@@ -12,7 +12,7 @@ use Doctrine\ORM\EntityRepository;
  */
 class ReparationRepository extends EntityRepository
 {
-    public function findReparationByParametres($data)
+    public function findByOne($data)
 
     {
 
@@ -21,14 +21,12 @@ class ReparationRepository extends EntityRepository
 
                 ->andWhere('r.IMEI LIKE :IMEITelephone')
 
-                ->andWhere('r.Date LIKE :dateReparation')
+                
                 
                 ->setParameters(array(
                     'nomClient' => $data['Nom'],
 
-                    'IMEITelephone' => $data['IMEI'],
-
-                    'dateReparation' => $data['Date']));
+                    'IMEITelephone' => $data['IMEI']));
 
 
         // Si la recherche porte sur toutes les clients
