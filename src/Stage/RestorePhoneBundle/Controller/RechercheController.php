@@ -56,12 +56,40 @@ class RechercheController extends Controller
 
                             //On va récupérer la méthode dans le repository afin de trouver toutes les annonces filtrées par les paramètres du formulaire
 
-                        $liste_recherche = $em->getRepository('StageRestorePhoneBundle:Reparation')->findByOne($data);
+                        //$liste_recherche = $em->getRepository('StageRestorePhoneBundle:Reparation')->findByOne($data);
 
+                        if (!empty($_POST['Nom']))
+                        {
+                            $repository=  $this
+                                    ->getDoctrine()
+                                    ->getManager()
+                                    ->getRepository('StageRestorePhoneBundle:Client');
+                            $liste_recherche=$repository->findBy(
+                                    array('Nom' => $data),
+                                    array('id' => 'desc'),
+                                    5,
+                                    0);
+                        }
+                        else
+                        {
+                            $repository=  $this
+                                    ->getDoctrine()
+                                    ->getManager()
+                                    ->getRepository('StageRestorePhoneBundle:Telephone');
+                            $liste_recherche=$repository->findBy(
+                                    array('iMEI' => $data),
+                                    array('id' => 'desc'),
+                                    5,
+                                    0);
+                        }
+                        
+//                        foreach ($liste_recherche as $reparation) 
+//                        {
+//                             echo $reparation->getContent();
+//                        }
                               //Puis on redirige vers la page de visualisation de cette liste d'annonces
 
                         return $this->render('StageRestorePhoneBundle:Recherche:listeRecherche.html.twig', array('liste_recherche' => $liste_recherche));
-
                     }
 
             }
@@ -77,3 +105,4 @@ class RechercheController extends Controller
 
     }
 }
+?>

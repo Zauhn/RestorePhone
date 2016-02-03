@@ -27,45 +27,6 @@ class ReparationRepository extends EntityRepository
                     'nomClient' => $data['Nom'],
 
                     'IMEITelephone' => $data['IMEI']));
-
-
-        // Si la recherche porte sur toutes les clients
-
-        if($data['Client'] != '')
-
-        {
-
-            $query->andWhere('r.Client = :Client')
-
-            ->setParameter('Client', $data['Client']);
-
-        }
-
-        // Si la recherche porte sur tout les telephones
-
-        if($data['Telephone'] != '')
-
-        {
-
-            $query->andWhere('r.Telephone = :Telephone')
-
-            ->setParameter('Telephone', $data['Telephone']);
-
-        }
-
-        // Si la recherche porte sur toutes les dates
-
-        if($data['Reparation'] != '')
-
-        {
-
-            $query->andWhere('r.Reparation = :Reparation')
-
-            ->setParameter('Reparation', $data['Reparation']);
-
-        }
-
-
         return $query->getQuery()->getResult();
 
     }
