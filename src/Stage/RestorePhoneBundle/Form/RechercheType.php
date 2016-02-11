@@ -27,7 +27,7 @@ class RechercheType extends AbstractType
 
 {
 
-return 'SatgeRestorePhoneBundle_recherchereparation';
+return 'StageRestorePhoneBundle_recherchereparation';
 
 }
 }

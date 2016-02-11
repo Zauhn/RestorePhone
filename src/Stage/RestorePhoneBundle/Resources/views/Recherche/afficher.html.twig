@@ -1,0 +1,12 @@
+{% extends '::base.html.twig' %}
+{% block body %}
+                Nom : {{ maReparation.getTelephone().getmonClient().getNom() }} <br>
+                Prenom : {{ maReparation.getTelephone().getmonClient().getPrenom() }} <br>
+                Numéro de Telephone : {{ maReparation.getTelephone().getmonClient().getNumTel() }} <br>
+                IMEI : {{ maReparation.getTelephone().getIMEI() }} <br>
+                Modèle : {{ maReparation.getTelephone().getModele() }} <br>
+                Problème : {{ maReparation.getProbleme() }} <br>
+                Prix : {{ maReparation.getPrix() }} <br>
+                A été déposé le : {{ maReparation.getDate().format('d/m/Y') }} <br>
+                Rendu le : {{ maReparation.getDateRendu().format('d/m/Y') }} <br>
+{% endblock %}
