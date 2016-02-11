@@ -8,6 +8,8 @@ use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 use Symfony\Component\Validator\Constraints\Range;
 
 
+
+
 class RechercheType extends AbstractType
 {
    public function buildForm(FormBuilderInterface $builder, array $options)
@@ -15,18 +17,17 @@ class RechercheType extends AbstractType
 {
      $builder
 
-->add('<Client', 'entity', array('class' => 'StageRestorePhoneBundle:Client', 'property' => 'Nom', 'empty_value' => 'Tout', 'required' => false))
+->add('Client', 'entity', array('class' => 'StageRestorePhoneBundle:Client', 'property' => 'Nom', 'required' => false))
 
-->add('Telephone', 'entity', array('class' => 'StageRestorePhoneBundle:Telephone', 'property' => 'IMEI', 'empty_value' => 'Tout', 'required' => false))  
+->add('Telephone', 'entity', array('class' => 'StageRestorePhoneBundle:Telephone', 'property' => 'IMEI', 'required' => false));  
 
-->add('Reparation', 'entity', array('class' => 'StageRestorePhoneBundle:Reparation', 'Reparation' => 'Date', 'empty_value' => 'Tout', 'required' => false))
    }
    
    public function getName()
 
 {
 
-return 'SatgeRestorePhoneBundle_recherchereparation';
+return 'StageRestorePhoneBundle_recherchereparation';
 
 }
 }

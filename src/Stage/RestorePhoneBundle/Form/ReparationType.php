@@ -14,6 +14,7 @@ class ReparationType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
+        //On donne au generateur de formulaire les valeurs a entrer
         $builder
             ->add('date',   'date')
             ->add('dateRendu',  'date')

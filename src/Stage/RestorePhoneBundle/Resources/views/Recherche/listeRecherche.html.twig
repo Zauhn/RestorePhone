@@ -1,8 +1,10 @@
-<div class="well">
+{% extends '::base.html.twig' %}
+{% block body %}
+    <div class="well">
 
 <h3>Liste des reparations</h3>
 
-<ul>
+<!--<ul>
 
 {% for recherche in liste_recherche %}
 
@@ -15,5 +17,11 @@
 {% endfor %}
 
 </ul>
+{% for reparation in liste_recherche %}
+      <tr>
+            <td>{{ reparation.getId() }}</td>
+        </tr>
+{% endfor %}-->
 
 </div>
+{% endblock %}

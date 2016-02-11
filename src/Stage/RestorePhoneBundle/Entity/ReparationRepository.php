@@ -12,4 +12,22 @@ use Doctrine\ORM\EntityRepository;
  */
 class ReparationRepository extends EntityRepository
 {
+    public function findByOne($data)
+
+    {
+
+        $query = $this->createQueryBuilder('r');
+        $query  ->where('r.Nom LIKE :nomClient')
+
+                ->andWhere('r.IMEI LIKE :IMEITelephone')
+
+                
+                
+                ->setParameters(array(
+                    'nomClient' => $data['Nom'],
+
+                    'IMEITelephone' => $data['IMEI']));
+        return $query->getQuery()->getResult();
+
+    }
 }

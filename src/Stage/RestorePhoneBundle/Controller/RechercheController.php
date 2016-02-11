@@ -11,14 +11,18 @@ use Stage\RestorePhoneBundle\Entity\Reparation;
 use Stage\RestorePhoneBundle\Form\TelephoneType;
 use Stage\RestorePhoneBundle\Form\ReparationType;
 use Symfony\Component\HttpFoundation\Request;
+use Stage\RestorePhoneBundle\Form\RechercheType;
+
+
 
 
 
 class RechercheController extends Controller
 {
-
-
-
+	/**
+     * @Route("/voir")
+     * @Template()
+     */
 
     public function indexAction()
 
@@ -26,7 +30,7 @@ class RechercheController extends Controller
 
         //On crée le FormBuilder grâce à la méthode du contrôleur. Toujours sans entité
 
-            $form = $this->createForm(new AdvertismentSearchType());
+            $form = $this->createForm(new RechercheType());
 
         //On récupère la requête
 
@@ -48,16 +52,44 @@ class RechercheController extends Controller
 
                             //On récupère les données entrées dans le formulaire par l'utilisateur
 
-                        $data = $this->getRequest()->request->get('SatgeRestorePhoneBundle_recherchereparation');
+                        $data = $this->getRequest()->request->get('StageRestorePhoneBundle_recherchereparation');
 
                             //On va récupérer la méthode dans le repository afin de trouver toutes les annonces filtrées par les paramètres du formulaire
 
-                        $liste_recherche = $em->getRepository('StageRestorePhoneBundle:Recherche')->findRechercheByParametres($data);
+                        //$liste_recherche = $em->getRepository('StageRestorePhoneBundle:Reparation')->findByOne($data);
 
+                        if (!empty($_POST['Nom']))
+                        {
+                            $repository=  $this
+                                    ->getDoctrine()
+                                    ->getManager()
+                                    ->getRepository('StageRestorePhoneBundle:Client');
+                            $liste_recherche=$repository->findBy(
+                                    array('Nom' => $data),
+                                    array('id' => 'desc'),
+                                    5,
+                                    0);
+                        }
+                        else
+                        {
+                            $repository=  $this
+                                    ->getDoctrine()
+                                    ->getManager()
+                                    ->getRepository('StageRestorePhoneBundle:Telephone');
+                            $liste_recherche=$repository->findBy(
+                                    array('iMEI' => $data),
+                                    array('id' => 'desc'),
+                                    5,
+                                    0);
+                        }
+                        
+                        foreach ($liste_recherche as $reparation) 
+                        {
+                             echo $reparation->telephone()->monClient()->getNom();
+                        }
                               //Puis on redirige vers la page de visualisation de cette liste d'annonces
 
-                        return $this->render('StageRestorePhoneBundle:Recherche:listeRecherche.html.twig', array('liste_recherche' => $liste_recherche));
-
+//                        return $this->render('StageRestorePhoneBundle:Recherche:listeRecherche.html.twig', array('liste_recherche' => $liste_recherche));
                     }
 
             }
@@ -72,4 +104,24 @@ class RechercheController extends Controller
 
 
     }
+    
+    /**
+	*@Route("/afficherReparation/{id}")
+	*@Template()
+	*/
+	public function afficherAction($id){
+		$em = $this->getDoctrine()->getManager();
+		$maReparation = $em->find('StageRestorePhoneBundle:Reparation', $id);
+//		echo($maReparation->getTelephone()->getmonClient()->getNom());
+//		echo("<br/>".$maReparation->getTelephone()->getmonClient()->getPrenom());
+//		echo("<br/>".$maReparation->getTelephone()->getmonClient()->getNumTel());
+//              echo("<br/>".$maReparation->getTelephone()->getIMEI());
+//                echo("<br/>".$maReparation->getTelephone()->getModele());
+//                echo("<br/>".$maReparation->getProbleme());
+//                echo("<br/>".$maReparation->getPrix());
+//                echo("<br/>".$maReparation->getDate());
+//                echo("<br/>".$maReparation->getDateRendu());
+                return array('maReparation' => $maReparation);
+	}
 }
+?>
